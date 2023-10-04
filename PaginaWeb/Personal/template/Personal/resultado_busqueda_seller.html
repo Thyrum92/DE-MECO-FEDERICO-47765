@@ -1,0 +1,57 @@
+{% extends "./padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    Busqueda completa {{seller.nickname}}
+
+{% endblock %}
+
+{% block resultado_busqueda %}
+<style>
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid white;
+  padding: 8px;
+}
+
+</style>
+<table>
+
+    <tr>
+        <th>Cust ID</th>
+        <th>Nickname</th>
+        <th>Razon Social</th>
+        <th>Nombre Responsable</th>
+        <th>Contacto Resonsable</th>
+        <th>Servicio 1</th>
+        <th>Servicio 2</th>
+        <th>Servicio 3</th>
+        <th>Servicio 4</th>
+        <th>Servicio 5</th>
+    </tr>
+    {% for vendedor in seller %}
+    <tr>
+        <td>{{vendedor.cust_id}}</td>
+        <td>{{vendedor.nickname}}</td>
+        <td>{{vendedor.razon_social}}</td>
+        <td>{{vendedor.nombre_responsable}} {{vendedor.apellido_responsable}}</td>
+        <td>{{vendedor.contacto_resonsable}}</td>
+        <td>{{vendedor.servicio_0}}</td>
+        <td>{{vendedor.servicio_1}}</td>
+        <td>{{vendedor.servicio_2}}</td>
+        <td>{{vendedor.servicio_3}}</td>
+        <td>{{vendedor.servicio_4}}</td>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

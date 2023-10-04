@@ -1,0 +1,13 @@
+{% extends "./padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    {% if unidades >= 2 %}
+        Agregaste {{unidades}} unidades del producto: {{nombre}} con SKU: {{sku}}
+    {% else %}
+        Agregaste {{unidades}} unidad del producto: {{nombre}} con SKU: {{sku}}
+    {% endif %}
+
+{% endblock %}

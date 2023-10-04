@@ -1,0 +1,46 @@
+{% extends "./padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    Busqueda completa {{seller.nickname}}
+
+{% endblock %}
+
+{% block resultado_busqueda %}
+<style>
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid white;
+  padding: 8px;
+}
+
+</style>
+<table>
+
+    <tr>
+        <th>SKU</th>
+        <th>Nombre</th>
+        <th>Pertenece</th>
+        <th>Ubicacion</th>
+        <th>Unidades</th>
+    </tr>
+    {% for v in vendedor %}
+    <tr>
+        <td>{{v.sku}}</td>
+        <td>{{v.nombre}}</td>
+        <td>{{v.pertenece_a}}</td>
+        <td>{{v.ubicacion}}</td>
+        <td>{{v.unidades}}</td>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

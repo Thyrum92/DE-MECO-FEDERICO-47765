@@ -1,0 +1,26 @@
+{% extends "./padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+    Aca podes buscar el para ver su informacion
+
+{% endblock %}
+
+{% block form %}
+
+    <form action="{% url 'resultado_busqueda_producto' %}" method="GET">
+
+        <table>
+            <tr>
+                <td><label for="pertenece_a">Seller</label></td>
+                <td><input type="text" name="pertenece_a" id="pertenece_a"></td>
+                <td><input type="submit" value="Buscar"></td>
+            </tr>
+        </table>
+
+    </form>
+
+{% endblock %}
+

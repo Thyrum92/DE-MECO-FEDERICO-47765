@@ -1,0 +1,21 @@
+{% extends "./login_registro_padre.html" %}
+
+
+{% block titulo %}
+
+Ingresa tus datos para registrarte
+
+{% endblock %}
+
+{% block form_reg %}
+
+<form action="" method="POST">{% csrf_token %}
+
+
+    {{register_form.as_p}}
+    
+    <button type="submit">Registrarse</button>
+
+</form>
+
+{% endblock %}

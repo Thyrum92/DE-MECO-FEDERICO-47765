@@ -1,0 +1,24 @@
+{% extends "./login_registro_padre.html" %}
+
+{% block titulo %}
+
+Ingresa tus datos para ingresar
+
+{% endblock %}
+
+{% block form_login %}      
+            <form action="" method="POST">{% csrf_token %}
+
+
+                {{login_form.as_p}}
+                
+                <button type="submit">LogIn</button>
+
+            </form>
+{% endblock %}
+
+{% block mensaje %}
+
+{{message}}
+
+{% endblock %}
