@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import Template, Context,loader
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 def inicio_sesion(request):
 
@@ -47,5 +48,6 @@ def registrarse(request):
     
     return render(request,'Paginaweb/registro.html',{'register_form':form})
 
+@login_required
 def index(request):
     return render(request,'PaginaWeb/index.html')

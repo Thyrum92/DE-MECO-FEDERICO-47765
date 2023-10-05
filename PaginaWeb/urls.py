@@ -23,11 +23,11 @@ urlpatterns = [
     #URLS BASE
     path('admin/', admin.site.urls),
     #URLS LOGIN Y REGISTRO
-    path('',inicio_sesion,name='login'),
+    path('login/',inicio_sesion,name='login'),
         #borrar path de regisro para proyecto de la empresa
     path('registro/',registrarse,name='registro'),
     #URL BASE
-    path("index/",index,name='Inicio_base'),
+    path("",index,name='Inicio_base'),
     #URLS Apps
     path('/Personal/', include('Personal.urls')),
     path('/Sellers/', include('Sellers.urls')),

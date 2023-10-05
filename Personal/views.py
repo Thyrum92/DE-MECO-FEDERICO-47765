@@ -3,14 +3,17 @@ from django.http import HttpResponse
 from django.template import Template, Context,loader
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 
 # Vinculando HTMLs que se van a usar.
 
+@login_required
 def pagina_principal(request):
                 
     return render(request,'Personal/index.html')
 
+@login_required
 def agregar_empleado(request):
 
     if request.method == "POST":
@@ -51,11 +54,13 @@ def agregar_empleado(request):
 
     return render(request, 'Personal/agregar_empleado.html', {"form":formulario})
 
+@login_required
 def buscar_empleado(request):
 
 
     return render(request,'Personal/buscar_empleado.html')
 
+@login_required
 def resultado_busqueda_empleado(request):
     
     if request.GET["apellido"]:
@@ -72,4 +77,13 @@ def resultado_busqueda_empleado(request):
     
     return render(request, 'Personal/resultado_busqueda_empleado.html', {'personal':personal})
 
+@login_required
+def eliminar_empleado(request,dni_empleado):
+
+    personal = Personal.objects.get(dni = dni_empleado)
+    
+
+    personal.delete()
+
+    return render(request,"Personal/resultado_busqueda_empleado.html")
 

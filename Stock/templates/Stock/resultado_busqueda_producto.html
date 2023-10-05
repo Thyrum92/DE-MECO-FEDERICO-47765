@@ -31,6 +31,7 @@ td {
         <th>Pertenece</th>
         <th>Ubicacion</th>
         <th>Unidades</th>
+        <th>Opciones</th>
     </tr>
     {% for v in vendedor %}
     <tr>
@@ -39,6 +40,9 @@ td {
         <td>{{v.pertenece_a}}</td>
         <td>{{v.ubicacion}}</td>
         <td>{{v.unidades}}</td>
+        <td>
+          <button><a href="{% url 'Eliminar Producto' v.sku %}">Eliminar</a></button>
+        </td>
     {% endfor %}
 
 </table>

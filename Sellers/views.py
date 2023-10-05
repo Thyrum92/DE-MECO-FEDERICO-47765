@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def inicio_sellers(request):
     return render(request,'Sellers/inicio_sellers.html')
 
+@login_required
 def agregar_seller(request):
 
     if request.method == "POST":
@@ -43,13 +46,16 @@ def agregar_seller(request):
 
     return render(request, 'Sellers/agregar_seller.html', {"form2":formulario})
 
+@login_required
 def seller_agregado(request):
 
     return render(request, 'Sellers/seller_agregado.html')
 
+@login_required
 def buscar_seller(request):
     return render(request,"Sellers/buscar_seller.html")
 
+@login_required
 def resultado_busqueda_seller(request):
     
     if request.GET["nickname"]:
@@ -65,3 +71,13 @@ def resultado_busqueda_seller(request):
         sellers = Seller.objects.all()
     
     return render(request, 'Sellers/resultado_busqueda_seller.html', {'seller':sellers})
+
+@login_required
+def eliminar_seller(request,custID):
+
+    seller = Seller.objects.get(cust_id = custID)
+    
+
+    seller.delete()
+
+    return render(request,"Sellers/resultado_busqueda_seller.html")

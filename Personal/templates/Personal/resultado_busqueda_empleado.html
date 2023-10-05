@@ -36,6 +36,7 @@ td {
         <th>Vinculo</th>
         <th>Numero</th>
         <th>Sector</th>
+        <th>Opciones</th>
     </tr>
     {% for persona in personal %}
     <tr>
@@ -49,6 +50,9 @@ td {
         <td>{{persona.vinculo}}</td>
         <td>{{persona.numero_contacto_emergencia}}</td>
         <td>{{persona.sector}}</td>
+        <td>
+          <button><a href="{% url 'Eliminar Empleado' persona.dni %}">Eliminar</a></button>
+        </td>
     </tr>
     {% endfor %}
 

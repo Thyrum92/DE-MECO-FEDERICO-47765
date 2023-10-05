@@ -36,6 +36,7 @@ td {
         <th>Servicio 3</th>
         <th>Servicio 4</th>
         <th>Servicio 5</th>
+        <th>Opciones</th>
     </tr>
     {% for vendedor in seller %}
     <tr>
@@ -49,6 +50,9 @@ td {
         <td>{{vendedor.servicio_2}}</td>
         <td>{{vendedor.servicio_3}}</td>
         <td>{{vendedor.servicio_4}}</td>
+        <td>
+          <button><a href="{% url 'Eliminar Seller' vendedor.cust_id  %}">Eliminar</a></button>
+        </td>
 
     {% endfor %}
 
