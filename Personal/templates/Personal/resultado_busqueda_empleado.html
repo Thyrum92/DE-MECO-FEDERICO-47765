@@ -51,7 +51,12 @@ td {
         <td>{{persona.numero_contacto_emergencia}}</td>
         <td>{{persona.sector}}</td>
         <td>
-          <button><a href="{% url 'Eliminar Empleado' persona.dni %}">Eliminar</a></button>
+          <button>
+            <a href="{% url 'Eliminar Empleado' persona.dni %}">Eliminar</a>
+          </button>
+          <button>
+            <a href="{% url 'Actualizar Empleado' persona.dni %}">Actualizar</a>
+          </button>
         </td>
     </tr>
     {% endfor %}

@@ -31,7 +31,7 @@ def agregar_producto(request):
             
             producto.save()
 
-            return render(request, 'Stock/producto_agregado.html',{"sku":producto.sku,"nombre":producto.nombre,"unidades":producto.unidades})
+            return render(request, 'Stock/producto_agregado.html',{"mensaje":f"informacion de {producto.sku} {producto.nombre} agregada con exito"})
 
     else:
         
@@ -74,3 +74,40 @@ def eliminar_producto(request,sku_producto):
     producto.delete()
 
     return render(request,"Stock/resultado_busqueda_producto.html")
+
+@login_required
+def actualizar_producto(request,sku_producto):
+
+    producto = Producto.objects.get(sku = sku_producto)
+
+    if request.method == "POST":
+
+        formulario = Producto_form(request.POST)
+
+        if formulario.is_valid():
+
+            info = formulario.cleaned_data
+
+            producto.sku = info["sku"]
+            producto.nombre = info["nombre"]
+            producto.pertenece_a = info["pertenece_a"]
+            producto.ubicacion = info["ubicacion"]
+            producto.unidades = info["unidades"]
+
+            producto.save()
+
+            return render(request, 'Stock/producto_agregado.html',{"mensaje":f"informacion de {producto.sku} {producto.nombre} actualizada con exito"})
+
+    else:
+        
+        formulario = Producto_form(initial={
+
+        "sku":producto.sku,
+        "nombre":producto.nombre,
+        "pertenece_a":producto.pertenece_a,
+        "ubicacion":producto.ubicacion,
+        "unidades":producto.unidades,
+
+        })
+
+    return render(request, 'Stock/actualizar_producto.html', {"form":formulario,"sku": sku_producto})

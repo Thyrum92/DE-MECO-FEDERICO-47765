@@ -51,7 +51,12 @@ td {
         <td>{{vendedor.servicio_3}}</td>
         <td>{{vendedor.servicio_4}}</td>
         <td>
-          <button><a href="{% url 'Eliminar Seller' vendedor.cust_id  %}">Eliminar</a></button>
+          <button>
+            <a href="{% url 'Eliminar Seller' vendedor.cust_id  %}">Eliminar</a>
+          </button>
+          <button>
+            <a href="{% url 'Actualizar Seller' vendedor.cust_id  %}">Actualizar</a>
+          </button>
         </td>
 
     {% endfor %}

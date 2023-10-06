@@ -38,7 +38,7 @@ def agregar_seller(request):
             
             seller.save()
 
-            return render(request, 'Sellers/seller_agregado.html',{"seller":seller.nickname,"r_z":seller.razon_social})
+            return render(request, 'Sellers/seller_agregado.html',{"mensaje":f"informacion de {seller.cust_id} - {seller.nickname} agregada con exito"})
 
     else:
         
@@ -81,3 +81,52 @@ def eliminar_seller(request,custID):
     seller.delete()
 
     return render(request,"Sellers/resultado_busqueda_seller.html")
+
+@login_required
+def actualizar_seller(request,custID):
+
+    seller = Seller.objects.get(cust_id = custID)
+
+    if request.method == "POST":
+
+        formulario = Seller_form(request.POST)
+
+        if formulario.is_valid():
+
+            info = formulario.cleaned_data
+
+            seller.cust_id = info["cust_id"]
+            seller.nickname = info["nickname"]
+            seller.razon_social = info["razon_social"]
+            seller.nombre_responsable = info["nombre_responsable"]
+            seller.apellido_responsable = info["apellido_responsable"]
+            seller.contacto_resonsable = info["contacto_resonsable"]
+            seller.servicio_0 = info["servicio_0"]
+            seller.servicio_1 = info["servicio_1"]
+            seller.servicio_2 = info["servicio_2"]
+            seller.servicio_3 = info["servicio_3"]
+            seller.servicio_4 = info["servicio_4"]
+
+            seller.save()
+
+            return render(request, 'Sellers/seller_agregado.html',{"mensaje":f"informacion de {seller.cust_id} - {seller.nickname} actualizada con exito"})
+
+    else:
+        
+        formulario = Seller_form(initial={
+
+            "cust_id": seller.cust_id,
+            "nickname":seller.nickname,
+            "razon_social":seller.razon_social,
+            "nombre_responsable":seller.nombre_responsable,
+            "apellido_responsable":seller.apellido_responsable,
+            "contacto_resonsable":seller.contacto_resonsable,
+            "servicio_0":seller.servicio_0,
+            "servicio_1":seller.servicio_1,
+            "servicio_2":seller.servicio_2,
+            "servicio_3":seller.servicio_3,
+            "servicio_4":seller.servicio_4
+
+        })
+
+    return render(request, 'Sellers/actualizar_seller.html', {"form":formulario,"cust_id": custID})

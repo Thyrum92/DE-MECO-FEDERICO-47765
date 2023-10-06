@@ -41,7 +41,12 @@ td {
         <td>{{v.ubicacion}}</td>
         <td>{{v.unidades}}</td>
         <td>
-          <button><a href="{% url 'Eliminar Producto' v.sku %}">Eliminar</a></button>
+          <button>
+            <a href="{% url 'Eliminar Producto' v.sku %}">Eliminar</a>
+          </button>
+          <button>
+            <a href="{% url 'Actualizar Producto' v.sku %}">Actualizar</a>
+          </button>
         </td>
     {% endfor %}
 
