@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-template_base = os.path.join(BASE_DIR,"PaginaWeb/templates")
+template_base = os.path.join(BASE_DIR,"usuarios/templates")
 templates_personal = os.path.join(BASE_DIR,"Personal/templates") 
 templates_sellers = os.path.join(BASE_DIR,'Sellers/templates')
 templates_stock = os.path.join(BASE_DIR,'Stock/templates')
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     #Mis Apps
     'Personal',
     'Sellers',
-    'Stock'
+    'Stock',
+    'usuarios'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'PaginaWeb.urls'
+ROOT_URLCONF = 'usuarios.urls'
 
 TEMPLATES = [
     {
@@ -138,3 +139,7 @@ STATICFILES_DIRS = [static_base]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
