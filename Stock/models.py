@@ -7,3 +7,7 @@ class Producto(models.Model): #Base de datos de Stock
     pertenece_a = models.CharField(max_length=20)
     ubicacion = models.CharField(max_length=10)
     unidades = models.IntegerField()
+
+class Producto_vendido(models.Model):
+    sku = models.ForeignKey(Producto,on_delete=models.CASCADE)
+    unidades_vendidas = models.IntegerField()

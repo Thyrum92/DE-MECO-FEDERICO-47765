@@ -75,13 +75,7 @@ def agregarAvatar(request):
             return render(request,'usuarios/index.html')
     else:
 
-        try:
-
-            avatarActivo = Avatar.objects.get(usuario = usuario_activo)
-            form = AvatarForm(instance=avatarActivo)
-        except Avatar.DoesNotExist:
-
-            form = AvatarForm()
+        form = AvatarForm()
     
     return render(request,"usuarios/agregar_avatar.html", {"form": form}) 
 

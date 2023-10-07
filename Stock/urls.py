@@ -8,5 +8,6 @@ urlpatterns = [
     path("resultado_busqueda_producto/",resultado_busqueda_producto,name="resultado_busqueda_producto"),
     path("borrar/<sku_producto>/",eliminar_producto,name="Eliminar Producto"),
     path("actualizar/<sku_producto>/",actualizar_producto,name="Actualizar Producto"),
+    path("descontar_unidades",descontar_stock,name="Descontar Unidades")
 
 ]

@@ -111,3 +111,41 @@ def actualizar_producto(request,sku_producto):
         })
 
     return render(request, 'Stock/actualizar_producto.html', {"form":formulario,"sku": sku_producto})
+
+@login_required
+def descontar_stock(request):
+
+    if request.method == "POST":
+
+        formulario = Proucto_vendido_form(request.POST)
+
+        if formulario.is_valid():
+
+            sku = formulario.cleaned_data['sku']
+            pertenece_a = formulario.cleaned_data['pertenece_a']
+            unidades_vendidas = formulario.cleaned_data['unidades_vendidas']
+
+            try:
+                producto = Producto.objects.get(sku = sku,pertenece_a=pertenece_a)
+
+                if pertenece_a == formulario.cleaned_data['pertenece_a']:
+                    if producto.unidades >= unidades_vendidas:
+                        producto.unidades -= unidades_vendidas
+                        producto.save()
+
+                        producto_vendido = Producto_vendido(sku=producto,unidades_vendidas=unidades_vendidas)
+                        producto_vendido.save()
+
+                        return render(request, 'Stock/unidades_descontadas.html',{"mensaje":f"Quedan {producto.unidades} unidades de {producto.sku} - {producto.nombre}"})
+                    else:
+                        return render(request, 'Stock/unidades_descontadas.html',{"mensaje":"No hay suficientes unidades para descontar"}) 
+            except Producto.DoesNotExist:
+                 
+                 return render(request, 'Stock/unidades_descontadas.html',{"mensaje":"El SKU ingresado no existe o no pertenece a ese seller"})  
+
+    else:
+        
+        formulario = Proucto_vendido_form()
+        mensaje = ""
+
+    return render(request, 'Stock/descontar_unidades.html', {"form":formulario,"mensaje":mensaje})
