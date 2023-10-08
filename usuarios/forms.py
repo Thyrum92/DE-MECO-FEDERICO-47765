@@ -22,3 +22,7 @@ class AvatarForm(forms.ModelForm):
         label = "",
         widget = forms.ClearableFileInput(attrs={'class': 'form-input'})
     )
+
+class Usuario_actualizar(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()

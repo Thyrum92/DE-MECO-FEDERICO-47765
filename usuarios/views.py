@@ -82,3 +82,36 @@ def agregarAvatar(request):
 @login_required
 def index(request):
     return render(request,'usuarios/index.html')
+
+@login_required
+def actualizar_datos(request):
+
+    usuario = User.objects.get(username = request.user)
+
+    if request.method == "POST":
+
+        formulario = Usuario_actualizar(request.POST)
+
+        if formulario.is_valid():
+
+            info = formulario.cleaned_data
+
+            usuario.first_name = info["first_name"]
+            usuario.last_name = info["last_name"]
+
+
+            usuario.save()
+
+            return render(request, 'usuarios/confirmacion_actualizacion.html',{"mensaje":f"informacion de {usuario.username} actualizada con exito"})
+
+    else:
+        
+        formulario = Usuario_actualizar(initial={
+
+            "first_name": usuario.first_name,
+            "last_name":usuario.last_name,
+
+
+        })
+
+    return render(request, 'usuarios/mis_datos.html', {"form":formulario,"user": usuario.username})

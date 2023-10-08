@@ -28,6 +28,8 @@ urlpatterns = [
     path('login/',inicio_sesion,name='login'),
         #borrar path de regisro para proyecto de la empresa
     path('registro/',registrarse,name='registro'),
+        #actualizar datos
+    path('mis_datos/',actualizar_datos,name="mis datos"),
     # Avatar
     path('avatar/',agregarAvatar,name="Agregar Avatar"),
     #URL BASE
