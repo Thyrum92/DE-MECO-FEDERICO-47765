@@ -115,3 +115,7 @@ def actualizar_datos(request):
         })
 
     return render(request, 'usuarios/mis_datos.html', {"form":formulario,"user": usuario.username})
+
+@login_required
+def acerca_de_mi(request):
+    return render(request,'usuarios/acerca_de_mi.html')

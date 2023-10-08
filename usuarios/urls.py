@@ -32,6 +32,8 @@ urlpatterns = [
     path('mis_datos/',actualizar_datos,name="mis datos"),
     # Avatar
     path('avatar/',agregarAvatar,name="Agregar Avatar"),
+    #acerca de mi
+    path('acerca_de_mi',acerca_de_mi,name='Acerca de mi'),
     #URL BASE
     path("",index,name='Inicio_base'),
     #URLS Apps

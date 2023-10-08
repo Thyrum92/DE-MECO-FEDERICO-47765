@@ -89,7 +89,7 @@
                         {% endif %}
 
                         {% endwith %}
-
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Acerca de mi' %}">Acerca de mi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </div>
@@ -113,6 +113,10 @@
                 {% endblock %}
 
             </h2>
+
+            {% block descripcion2 %}
+
+            {% endblock %}
 
             {% block form %}
 
