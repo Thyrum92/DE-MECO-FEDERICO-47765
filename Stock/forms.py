@@ -10,7 +10,12 @@ class Producto_form(forms.Form): #Formulario para stock
 
 class Proucto_vendido_form(forms.Form):
     sku = forms.CharField(max_length=25)
-    pertenece_a = forms.ChoiceField(
-        label="Seller",
-        choices=[(prop, prop) for prop in Producto.objects.values_list('pertenece_a', flat=True).distinct()])
     unidades_vendidas = forms.IntegerField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = [(prop, prop) for prop in Producto.objects.values_list('pertenece_a', flat=True).distinct()]
+        self.fields['pertenece_a'] = forms.ChoiceField(
+            label="Seller",
+            choices=choices
+        )

@@ -15,5 +15,5 @@ Avatar: Este modelo se vincula con cada usuario, aqui se guardará la foto de pe
 
 ## Super Usuario:
 
-user:
-pass: 
+user: admin
+pass: 1234
